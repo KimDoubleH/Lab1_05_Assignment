@@ -19,6 +19,9 @@ int main() {
 	inputStream.close();
 
 	print(A);
+	/*print(I);
+	rref(A, I);
+	print(I);*/
 	print(b);
 	rref(A, b);
 	print(b);

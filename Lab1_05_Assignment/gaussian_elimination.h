@@ -2,7 +2,7 @@
 #define MATRIX_SIZE 4
 using namespace std;
 
-void print(const double(&A)[MATRIX_SIZE][MATRIX_SIZE])
+void print(const double(&A)[MATRIX_SIZE][MATRIX_SIZE])	//print a matrix
 {
 	cout.setf(ios::fixed);
 	cout.setf(ios::showpoint);
@@ -15,14 +15,16 @@ void print(const double(&A)[MATRIX_SIZE][MATRIX_SIZE])
 	cout << endl;
 }
 
-void print(const double(&b)[MATRIX_SIZE])
+void print(const double(&b)[MATRIX_SIZE])	//print a vector
 {
-	/**************
-	Implement the code here
-	**************/
+	cout.setf(ios::fixed);
+	cout.setf(ios::showpoint);
+	cout.precision(2);
+	for (int i = 0; i < MATRIX_SIZE; i++) cout << b[i] << "\t";
+	cout << endl;
 }
 
-void assign_row(double(&old_row)[MATRIX_SIZE], const double(&new_row)[MATRIX_SIZE]) {
+void assign_row(double(&old_row)[MATRIX_SIZE], const double(&new_row)[MATRIX_SIZE]) {	//update a row in the matrix
 	for (int i = 0; i < MATRIX_SIZE; i++)
 	{
 		old_row[i] = new_row[i];
@@ -37,9 +39,10 @@ void elementary_op1(double(&A)[MATRIX_SIZE][MATRIX_SIZE], int row1, int row2) {
 }
 
 void elementary_op1(double(&b)[MATRIX_SIZE], int row1, int row2) {
-	/**************
-	Implement the code here
-	**************/
+	double temp;
+	temp = b[row1];
+	b[row1] = b[row2];
+	b[row2] = temp;
 }
 
 void elementary_op2(double(&A)[MATRIX_SIZE][MATRIX_SIZE], int row, double a) {
@@ -49,9 +52,9 @@ void elementary_op2(double(&A)[MATRIX_SIZE][MATRIX_SIZE], int row, double a) {
 }
 
 void elementary_op2(double(&b)[MATRIX_SIZE], int row, double a) {
-	/**************
-	Implement the code here
-	**************/
+	double temp;
+	temp = a * b[row];
+	b[row] = temp;
 }
 
 void elementary_op3(double(&A)[MATRIX_SIZE][MATRIX_SIZE], int row1, int row2, double a) {
@@ -61,14 +64,14 @@ void elementary_op3(double(&A)[MATRIX_SIZE][MATRIX_SIZE], int row1, int row2, do
 }
 
 void elementary_op3(double(&b)[MATRIX_SIZE], int row1, int row2, double a) {
-	/**************
-	Implement the code here
-	**************/
+	double temp;
+	temp = b[row1] + a * b[row2];
+	b[row1] = temp;
 }
 
 int where_is_non_zero_row(const double(&A)[MATRIX_SIZE][MATRIX_SIZE], int col) {
 	for (int i = col; i < MATRIX_SIZE; i++) {
-		if (fabs(A[i][col]) > 0.001) {
+		if (fabs(A[i][col]) > 0.001) {		//~~if A[i][col] is not zero
 			return i;
 		}
 	}
@@ -104,7 +107,29 @@ void rref(double(&A)[MATRIX_SIZE][MATRIX_SIZE], double(&B)[MATRIX_SIZE][MATRIX_S
 }
 
 void rref(double(&A)[MATRIX_SIZE][MATRIX_SIZE], double(&b)[MATRIX_SIZE]) {
-	/**************
-	Implement the code here
-	**************/
+	/*int base_row;
+	double temp;
+	for (int i = 0; i < MATRIX_SIZE; i++)
+	{
+		base_row = where_is_non_zero_row(A, i);
+		cout << "non_zero row is " << base_row << endl;
+		if (base_row < 0) {
+			cout << "The input matrix is not invertible." << endl;
+			break;
+		}
+		else {
+			elementary_op1(A, base_row, i);
+			elementary_op1(b, base_row, i);
+			temp = 1.0 / A[i][i];
+			elementary_op2(A, i, temp);
+			elementary_op2(b, i, temp);
+			for (int j = 0; j < MATRIX_SIZE; j++)
+			{
+				if (i == j) continue;
+				temp = -A[j][i];
+				elementary_op3(A, j, i, temp);
+				elementary_op3(b, j, i, temp);
+			}
+		}
+	}*/
 }
