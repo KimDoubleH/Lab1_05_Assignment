@@ -107,7 +107,7 @@ void rref(double(&A)[MATRIX_SIZE][MATRIX_SIZE], double(&B)[MATRIX_SIZE][MATRIX_S
 }
 
 void rref(double(&A)[MATRIX_SIZE][MATRIX_SIZE], double(&b)[MATRIX_SIZE]) {
-	/*int base_row;
+	int base_row;
 	double temp;
 	for (int i = 0; i < MATRIX_SIZE; i++)
 	{
@@ -131,5 +131,5 @@ void rref(double(&A)[MATRIX_SIZE][MATRIX_SIZE], double(&b)[MATRIX_SIZE]) {
 				elementary_op3(b, j, i, temp);
 			}
 		}
-	}*/
+	}
 }
